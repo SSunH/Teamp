@@ -1,6 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -483,16 +487,17 @@
 	}
 
 	function calculatePrice(period) {
-		const carPrice = parseInt(document.getElementById("carPrice").textContent.trim());
-		const downPayment = parseInt(document.getElementById("downPayment").value);
-		const interestRate = 0.07; // 이자율은 7%로 가정
-		const result = calculateInstallmentPrice(carPrice, downPayment, period,interestRate);
-		const monthlyPaymentString = result.monthlyPayment.toLocaleString();
-		const totalPaymentString = result.totalPayment.toLocaleString();
+		  const carPrice = parseInt(document.getElementById("carPrice").textContent.replace(/,/g, ""));//콤마가 붙은 값은 문자로 인식하므로 콤마제거
+		  const downPayment = parseInt(document.getElementById("downPayment").value.replace(/,/g, ""));//콤마가 붙은 값은 문자로 인식하므로 콤마제거
+		  const interestRate = 0.07; // 이자율은 7%로 가정
+		  const result = calculateInstallmentPrice(carPrice, downPayment, period, interestRate);
+		  const monthlyPaymentString = result.monthlyPayment.toLocaleString();
+		  const totalPaymentString = result.totalPayment.toLocaleString();
 
-		document.getElementById("monthlyPayment").textContent = monthlyPaymentString;
-		document.getElementById("totalPayment").textContent = totalPaymentString;
-	}
+		  document.getElementById("monthlyPayment").textContent = monthlyPaymentString;
+		  document.getElementById("totalPayment").textContent = totalPaymentString;
+		}
+	
 	function resetCalculation() {
 		document.getElementById("carPrice").value = "";
 		document.getElementById("downPayment").value = "";
@@ -501,6 +506,52 @@
 
 	}
 </script>
+<script type="text/javascript">
+    function inputNumberAutoComma(obj) {
+       
+        // 콤마( , )의 경우도 문자로 인식되기때문에 콤마를 따로 제거한다.
+        var deleteComma = obj.value.replace(/\,/g, "");
+
+        // 콤마( , )를 제외하고 문자가 입력되었는지를 확인한다.
+        if(isFinite(deleteComma) == false) {
+            alert("문자는 입력하실 수 없습니다.");
+            obj.value = "";
+            return false;
+           
+          }
+       
+              
+        // 기존에 들어가있던 콤마( , )를 제거한 이 후의 입력값에 다시 콤마( , )를 삽입한다.
+        obj.value = inputNumberWithComma(inputNumberRemoveComma(obj.value));
+    }
+   
+    // 천단위 이상의 숫자에 콤마( , )를 삽입하는 함수
+    function inputNumberWithComma(str) {
+
+        str = String(str);
+        return str.replace(/(\d)(?=(?:\d{3})+(?!\d))/g, "$1,");
+    }
+
+    // 콤마( , )가 들어간 값에 콤마를 제거하는 함수
+    function inputNumberRemoveComma(str) {
+
+        str = String(str);
+        return str.replace(/[^\d]+/g, "");
+    }
+</script>
+<script>
+function limitnumber(){
+	  let downPayment = document.getElementById('downPayment');
+	  let carPrice = document.getElementById('carPrice').textContent.replace(/[^0-9]/g, ''); // 숫자만 추출
+
+	  if (parseInt(downPayment.value.replace(/[^0-9]/g, '')) > parseInt(carPrice)) { //숫자만 추출해서 비교 
+	    downPayment.value = carPrice.replace(/\B(?=(\d{3})+(?!\d))/g, ','); // 마지막에 콤마 추가
+	  }
+	}
+
+
+</script>
+
 
 
 </head>
@@ -610,11 +661,13 @@
 			<div class="price">
 				<div class="estimated_price" id=carPrice>
 					<c:forEach items="${vehicle }" var="test">
-			 ${test.price }
-			</c:forEach>
+					<fmt:formatNumber value="${test.price }" pattern=""/>원		
+					</c:forEach>
 				</div>
 				<div class="advance_payment">
-					<input type="text" class="advance_payment2" id=downPayment>
+					<input type="text" class="advance_payment2" value="1,000,000" id=downPayment onKeyup="inputNumberAutoComma(this);"
+					oninput="limitnumber()" maxlength="9" >
+			
 				</div>
 			</div>
 		</div> 
@@ -899,5 +952,6 @@
 		<script
 			src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.js"></script>
 		<script src="js/lightbox.js"></script>
+		
 </body>
 </html>
