@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	
+
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 
 <!DOCTYPE html>
@@ -46,6 +46,7 @@
 	width: 620px;
 	height: auto;
 	float: left;
+	margin-bottom: 50px;
 }
 
 .thumbnail {
@@ -125,7 +126,7 @@
 	width: 500px;
 	height: 150px;
 	border: 1px solid black;
-	margin-top: 25px;
+	margin-top: 70px;
 	margin-bottom: 10px;
 }
 
@@ -148,6 +149,7 @@
 	border: 1px solid black;
 	margin-bottom: 40px;
 	text-align: center;
+	margin-top: 50px;
 }
 
 .option-table th {
@@ -196,6 +198,7 @@
 	width: 1000px;
 	height: auto;
 	margin-bottom: 20px;
+	margin-top: 50px;
 }
 
 .price {
@@ -211,8 +214,7 @@
 	height: 50px;
 	border: 1px solid lightgray;
 	border-radius: 10px;
-	/*    background-color: yellow; */
-	float: left;
+   	float: left;
 	margin-right: 50px;
 	line-height: 50px;
 }
@@ -230,8 +232,6 @@
 .advance_payment {
 	width: calc(100% * 1/ 3);
 	height: 50px;
-	border: 1px solid lightgray;
-	border-radius: 10px;
 	/*    background-color: skyblue; */
 	float: left;
 	line-height: 50px;
@@ -487,17 +487,20 @@
 	}
 
 	function calculatePrice(period) {
-		  const carPrice = parseInt(document.getElementById("carPrice").textContent.replace(/,/g, ""));//콤마가 붙은 값은 문자로 인식하므로 콤마제거
-		  const downPayment = parseInt(document.getElementById("downPayment").value.replace(/,/g, ""));//콤마가 붙은 값은 문자로 인식하므로 콤마제거
-		  const interestRate = 0.07; // 이자율은 7%로 가정
-		  const result = calculateInstallmentPrice(carPrice, downPayment, period, interestRate);
-		  const monthlyPaymentString = result.monthlyPayment.toLocaleString();
-		  const totalPaymentString = result.totalPayment.toLocaleString();
+		const carPrice = parseInt(document.getElementById("carPrice").textContent
+				.replace(/,/g, ""));//콤마가 붙은 값은 문자로 인식하므로 콤마제거
+		const downPayment = parseInt(document.getElementById("downPayment").value
+				.replace(/,/g, ""));//콤마가 붙은 값은 문자로 인식하므로 콤마제거
+		const interestRate = 0.07; // 이자율은 7%로 가정
+		const result = calculateInstallmentPrice(carPrice, downPayment, period,
+				interestRate);
+		const monthlyPaymentString = result.monthlyPayment.toLocaleString();
+		const totalPaymentString = result.totalPayment.toLocaleString();
 
-		  document.getElementById("monthlyPayment").textContent = monthlyPaymentString;
-		  document.getElementById("totalPayment").textContent = totalPaymentString;
-		}
-	
+		document.getElementById("monthlyPayment").textContent = monthlyPaymentString;
+		document.getElementById("totalPayment").textContent = totalPaymentString;
+	}
+
 	function resetCalculation() {
 		document.getElementById("carPrice").value = "";
 		document.getElementById("downPayment").value = "";
@@ -507,49 +510,47 @@
 	}
 </script>
 <script type="text/javascript">
-    function inputNumberAutoComma(obj) {
-       
-        // 콤마( , )의 경우도 문자로 인식되기때문에 콤마를 따로 제거한다.
-        var deleteComma = obj.value.replace(/\,/g, "");
+	function inputNumberAutoComma(obj) {
 
-        // 콤마( , )를 제외하고 문자가 입력되었는지를 확인한다.
-        if(isFinite(deleteComma) == false) {
-            alert("문자는 입력하실 수 없습니다.");
-            obj.value = "";
-            return false;
-           
-          }
-       
-              
-        // 기존에 들어가있던 콤마( , )를 제거한 이 후의 입력값에 다시 콤마( , )를 삽입한다.
-        obj.value = inputNumberWithComma(inputNumberRemoveComma(obj.value));
-    }
-   
-    // 천단위 이상의 숫자에 콤마( , )를 삽입하는 함수
-    function inputNumberWithComma(str) {
+		// 콤마( , )의 경우도 문자로 인식되기때문에 콤마를 따로 제거한다.
+		var deleteComma = obj.value.replace(/\,/g, "");
 
-        str = String(str);
-        return str.replace(/(\d)(?=(?:\d{3})+(?!\d))/g, "$1,");
-    }
+		// 콤마( , )를 제외하고 문자가 입력되었는지를 확인한다.
+		if (isFinite(deleteComma) == false) {
+			alert("문자는 입력하실 수 없습니다.");
+			obj.value = "";
+			return false;
 
-    // 콤마( , )가 들어간 값에 콤마를 제거하는 함수
-    function inputNumberRemoveComma(str) {
+		}
 
-        str = String(str);
-        return str.replace(/[^\d]+/g, "");
-    }
-</script>
-<script>
-function limitnumber(){
-	  let downPayment = document.getElementById('downPayment');
-	  let carPrice = document.getElementById('carPrice').textContent.replace(/[^0-9]/g, ''); // 숫자만 추출
-
-	  if (parseInt(downPayment.value.replace(/[^0-9]/g, '')) > parseInt(carPrice)) { //숫자만 추출해서 비교 
-	    downPayment.value = carPrice.replace(/\B(?=(\d{3})+(?!\d))/g, ','); // 마지막에 콤마 추가
-	  }
+		// 기존에 들어가있던 콤마( , )를 제거한 이 후의 입력값에 다시 콤마( , )를 삽입한다.
+		obj.value = inputNumberWithComma(inputNumberRemoveComma(obj.value));
 	}
 
+	// 천단위 이상의 숫자에 콤마( , )를 삽입하는 함수
+	function inputNumberWithComma(str) {
 
+		str = String(str);
+		return str.replace(/(\d)(?=(?:\d{3})+(?!\d))/g, "$1,");
+	}
+
+	// 콤마( , )가 들어간 값에 콤마를 제거하는 함수
+	function inputNumberRemoveComma(str) {
+
+		str = String(str);
+		return str.replace(/[^\d]+/g, "");
+	}
+</script>
+<script>
+	function limitnumber() {
+		let downPayment = document.getElementById('downPayment');
+		let carPrice = document.getElementById('carPrice').textContent.replace(
+				/[^0-9]/g, ''); // 숫자만 추출
+
+		if (parseInt(downPayment.value.replace(/[^0-9]/g, '')) > parseInt(carPrice)) { //숫자만 추출해서 비교 
+			downPayment.value = carPrice.replace(/\B(?=(\d{3})+(?!\d))/g, ','); // 마지막에 콤마 추가
+		}
+	}
 </script>
 
 
@@ -650,9 +651,11 @@ function limitnumber(){
 				</table>
 				<button class="favorites-btn">찜하기</button>
 			</div>
-		</div>
+			</div>
+		
 
 		<!-- 할부금 -->
+	
 		<div class="estimated">
 			<div class="price">
 				<div class="estimated_price1">차량가격</div>
@@ -661,16 +664,17 @@ function limitnumber(){
 			<div class="price">
 				<div class="estimated_price" id=carPrice>
 					<c:forEach items="${vehicle }" var="test">
-					<fmt:formatNumber value="${test.price }" pattern=""/>원		
+						<fmt:formatNumber value="${test.price }" pattern="" />원		
 					</c:forEach>
 				</div>
 				<div class="advance_payment">
-					<input type="text" class="advance_payment2" value="1,000,000" id=downPayment onKeyup="inputNumberAutoComma(this);"
-					oninput="limitnumber()" maxlength="9" >
-			
+					<input type="text" class="advance_payment2" value="1,000,000"
+						id=downPayment onKeyup="inputNumberAutoComma(this);"
+						oninput="limitnumber()" maxlength="9">
+
 				</div>
 			</div>
-		</div> 
+		
 		<div class="monthly1">할부가격</div>
 		<div class="monthly">
 			<button onclick="calculatePrice(12)">12개월</button>
@@ -706,6 +710,68 @@ function limitnumber(){
 					</div>
 				</div>
 			</div>
+		</div>
+		
+	
+		<!-- 기본정보 -->
+
+		<div class="container mt-5">
+			<table class="table">
+				<thead>
+
+					<tr>
+						<th><h4>기본정보</h4></th>
+				</thead>
+				<tbody>
+					<!-- 더미 데이터 출력 -->
+					<tr>
+						<th style="width: 25%;" class="fw-normal">모델명</th>
+						<th style="width: 25%;" class="fw-normal">내용3</th>
+						<th style="width: 25%;" class="fw-normal">가격</th>
+						<th style="width: 25%;" class="fw-normal">내용4</th>
+					</tr>
+					<tr>
+						<td>주행거리</td>
+						<td>내용2</td>
+						<td>연식</td>
+						<td>내용4</td>
+					</tr>
+					<tr>
+						<td>차량번호</td>
+						<td>내용2</td>
+						<td>제조사</td>
+						<td>내용4</td>
+					</tr>
+					<tr>
+						<td>색상</td>
+						<td>내용2</td>
+						<td>배기량</td>
+						<td>내용4</td>
+					</tr>
+					<tr>
+						<td>국산/수입</td>
+						<td>내용2</td>
+						<td>차종</td>
+						<td>내용4</td>
+					</tr>
+					<tr>
+						<td>구동방식</td>
+						<td>내용2</td>
+						<td>연료타입</td>
+						<td>내용4</td>
+					</tr>
+					<tr>
+						<td>자동/수동</td>
+						<td>내용2</td>
+						<td>탑승인원</td>
+						<td>내용4</td>
+					</tr>
+					
+				</tbody>
+			</table>
+
+
+
 		</div>
 
 		<!-- 옵션 -->
@@ -843,6 +909,7 @@ function limitnumber(){
 			<div class="counseling">상담 신청하기</div>
 			<div class="favorites-btn1">찜하기</div>
 		</div>
+	</div>
 
 
 
@@ -868,90 +935,90 @@ function limitnumber(){
 
 
 
-		<!-- 		<form action="/regist" method="POST"> -->
-		<!-- 		<label for="vehicle_no">vehicle_no:</label> -->
-		<!-- 		<input type="text" id="vehicle_no" name="vehicle_no" value="1" required><br><br> -->
+	<!-- 		<form action="/regist" method="POST"> -->
+	<!-- 		<label for="vehicle_no">vehicle_no:</label> -->
+	<!-- 		<input type="text" id="vehicle_no" name="vehicle_no" value="1" required><br><br> -->
 
-		<!-- 		<label for="license_number">License Number:</label> -->
-		<!-- 		<input type="text" id="license_number" name="license_number" value="12가1212" required><br><br> -->
+	<!-- 		<label for="license_number">License Number:</label> -->
+	<!-- 		<input type="text" id="license_number" name="license_number" value="12가1212" required><br><br> -->
 
-		<!-- 		<label for="domestic_import">Domestic Import:</label> -->
-		<!-- 		<input type="text" id="domestic_import" name="domestic_import" value="국산" required><br><br> -->
+	<!-- 		<label for="domestic_import">Domestic Import:</label> -->
+	<!-- 		<input type="text" id="domestic_import" name="domestic_import" value="국산" required><br><br> -->
 
-		<!-- 		<label for="manufacturer">Manufacturer:</label> -->
-		<!-- 		<input type="text" id="manufacturer" name="manufacturer" value="기아" required><br><br> -->
+	<!-- 		<label for="manufacturer">Manufacturer:</label> -->
+	<!-- 		<input type="text" id="manufacturer" name="manufacturer" value="기아" required><br><br> -->
 
-		<!-- 		<label for="vehicle_type">Vehicle Type:</label> -->
-		<!-- 		<input type="text" id="vehicle_type" name="vehicle_type" value="대형" required><br><br> -->
+	<!-- 		<label for="vehicle_type">Vehicle Type:</label> -->
+	<!-- 		<input type="text" id="vehicle_type" name="vehicle_type" value="대형" required><br><br> -->
 
-		<!-- 		<label for="model_name">Model Name:</label> -->
-		<!-- 		<input type="text" id="model_name" name="model_name" value="k9" required><br><br> -->
+	<!-- 		<label for="model_name">Model Name:</label> -->
+	<!-- 		<input type="text" id="model_name" name="model_name" value="k9" required><br><br> -->
 
-		<!-- 		<label for="year_of_manufacture">Year of Manufacture:</label> -->
-		<!-- 		<input type="text" id="year_of_manufacture" name="year_of_manufacture" value="2022" required><br><br> -->
+	<!-- 		<label for="year_of_manufacture">Year of Manufacture:</label> -->
+	<!-- 		<input type="text" id="year_of_manufacture" name="year_of_manufacture" value="2022" required><br><br> -->
 
-		<!-- 		<label for="mileage">Mileage:</label> -->
-		<!-- 		<input type="number" id="mileage" name="mileage" value="1" required><br><br> -->
+	<!-- 		<label for="mileage">Mileage:</label> -->
+	<!-- 		<input type="number" id="mileage" name="mileage" value="1" required><br><br> -->
 
-		<!-- 		<label for="fuel_type">Fuel Type:</label> -->
-		<!-- 		<input type="text" id="fuel_type" name="fuel_type" value="디젤" required><br><br> -->
+	<!-- 		<label for="fuel_type">Fuel Type:</label> -->
+	<!-- 		<input type="text" id="fuel_type" name="fuel_type" value="디젤" required><br><br> -->
 
-		<!-- 		<label for="transmission_type">Transmission Type:</label> -->
-		<!-- 		<input type="text" id="transmission_type" name="transmission_type" value="오토" required><br><br> -->
+	<!-- 		<label for="transmission_type">Transmission Type:</label> -->
+	<!-- 		<input type="text" id="transmission_type" name="transmission_type" value="오토" required><br><br> -->
 
-		<!-- 		<label for="displacement">Displacement:</label> -->
-		<!-- 		<input type="number" id="displacement" name="displacement" value="1" required><br><br> -->
+	<!-- 		<label for="displacement">Displacement:</label> -->
+	<!-- 		<input type="number" id="displacement" name="displacement" value="1" required><br><br> -->
 
-		<!-- 		<label for="passenger_capacity">Passenger Capacity:</label> -->
-		<!-- 		<input type="number" id="passenger_capacity" name="passenger_capacity" value="5" required><br><br> -->
+	<!-- 		<label for="passenger_capacity">Passenger Capacity:</label> -->
+	<!-- 		<input type="number" id="passenger_capacity" name="passenger_capacity" value="5" required><br><br> -->
 
-		<!-- 		<label for="wheel_type">Wheel Type:</label> -->
-		<!-- 		<input type="text" id="wheel_type" name="wheel_type" value="후륜" required><br><br> -->
+	<!-- 		<label for="wheel_type">Wheel Type:</label> -->
+	<!-- 		<input type="text" id="wheel_type" name="wheel_type" value="후륜" required><br><br> -->
 
-		<!-- 		<label for="color">Color:</label> -->
-		<!-- 		<input type="text" id="color" name="color" value="검정" required><br><br> -->
+	<!-- 		<label for="color">Color:</label> -->
+	<!-- 		<input type="text" id="color" name="color" value="검정" required><br><br> -->
 
-		<!-- 		<label for="price">Price:</label> -->
-		<!-- 		<input type="number" id="price" name="price" value="29000000" required><br><br> -->
+	<!-- 		<label for="price">Price:</label> -->
+	<!-- 		<input type="number" id="price" name="price" value="29000000" required><br><br> -->
 
-		<!-- 		<label for="accident_status">Accident Status:</label> -->
-		<!-- 		<input type="text" id="accident_status" name="accident_status" value="무사고" required><br><br> -->
+	<!-- 		<label for="accident_status">Accident Status:</label> -->
+	<!-- 		<input type="text" id="accident_status" name="accident_status" value="무사고" required><br><br> -->
 
-		<!-- 		<label for="transaction_date">Transaction Date:</label> -->
-		<!-- 		<input type="text" id="transaction_date" name="transaction_date" value="2023-03-09" required><br><br> -->
+	<!-- 		<label for="transaction_date">Transaction Date:</label> -->
+	<!-- 		<input type="text" id="transaction_date" name="transaction_date" value="2023-03-09" required><br><br> -->
 
-		<!-- 		<label for="transaction_location">Transaction Location:</label> -->
-		<!-- 		<input type="text" id="transaction_location" name="transaction_location" value="서울" required><br><br> -->
+	<!-- 		<label for="transaction_location">Transaction Location:</label> -->
+	<!-- 		<input type="text" id="transaction_location" name="transaction_location" value="서울" required><br><br> -->
 
-		<!-- 		<button type="submit">regist</button> -->
-
-
-		<!-- 	</form> -->
+	<!-- 		<button type="submit">regist</button> -->
 
 
-		<%@ include file="footer.jsp"%>
+	<!-- 	</form> -->
 
 
-		<!-- Bootstrap core JS-->
+	<%@ include file="footer.jsp"%>
 
 
-		<script
-			src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
-			integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
-			crossorigin="anonymous"></script>
-
-		<!-- Core theme JS-->
-		<script
-			src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<!-- Bootstrap core JS-->
 
 
-		<!-- slider JS -->
-		<script
-			src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
-		<script src="js/slider.js"></script>
-		<script
-			src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.js"></script>
-		<script src="js/lightbox.js"></script>
-		
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+		crossorigin="anonymous"></script>
+
+	<!-- Core theme JS-->
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+
+	<!-- slider JS -->
+	<script
+		src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
+	<script src="js/slider.js"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.js"></script>
+	<script src="js/lightbox.js"></script>
+
 </body>
 </html>
