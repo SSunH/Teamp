@@ -156,12 +156,18 @@
 	background-color: lightgray;
 	border: 1px solid black;
 	height: 40px;
+	color: #c0c0c0;
+	font-weight: 100;
+
 }
 
 .option-table td {
 	border: 1px solid black;
 	height: 40px;
 	width: calc(100%/ 15);
+	color: #c0c0c0;
+	font-weight: 100;
+
 }
 
 .option-table tbody {
@@ -170,6 +176,7 @@
 
 .option-table tbody td {
 	height: 60px;
+
 }
 
 .content {
@@ -241,7 +248,7 @@
 	width: calc(100% * 1/ 3);
 	height: 30px;
 	/*    border: 1px solid black; */
-	/*    background-color: skyblue; */
+		/*    background-color: skyblue; */
 	float: left;
 	line-height: 30px;
 }
@@ -620,19 +627,37 @@
 				<table class="vehicle-table">
 					<tr>
 						<td>모델명</td>
-						<td></td>
+						<td>
+						<c:forEach items="${vehicle }" var="info">
+						${info.modelname }	
+					</c:forEach>
+						
+						</td>
 					</tr>
 					<tr>
 						<td>가격</td>
-						<td></td>
+						<td>
+						<c:forEach items="${vehicle }" var="info">
+						<fmt:formatNumber value="${info.price }" pattern="" />원		
+					</c:forEach>
+						
+						</td>
 					</tr>
 					<tr>
 						<td>주행거리</td>
-						<td></td>
+						<td>
+						<c:forEach items="${vehicle }" var="info">
+						<fmt:formatNumber value="${info.mileage }" pattern="" />Km	
+					</c:forEach>
+						</td>
 					</tr>
 					<tr>
-						<td>연식</td>
-						<td></td>
+						<td>년식</td>
+						<td>
+						<c:forEach items="${vehicle }" var="info">
+						${info.yearofmanufacture }년식	
+					    </c:forEach>						
+						</td>
 					</tr>
 				</table>
 				<table class="member-table">
@@ -663,8 +688,8 @@
 			</div>
 			<div class="price">
 				<div class="estimated_price" id=carPrice>
-					<c:forEach items="${vehicle }" var="test">
-						<fmt:formatNumber value="${test.price }" pattern="" />원		
+					<c:forEach items="${vehicle }" var="info">
+						<fmt:formatNumber value="${info.price }" pattern="" />원		
 					</c:forEach>
 				</div>
 				<div class="advance_payment">
@@ -726,45 +751,101 @@
 					<!-- 더미 데이터 출력 -->
 					<tr>
 						<th style="width: 25%;" class="fw-normal">모델명</th>
-						<th style="width: 25%;" class="fw-normal">내용3</th>
+						<th style="width: 25%;" class="fw-normal">
+						<c:forEach items="${vehicle }" var="info">
+						${info.modelname }	
+				     	</c:forEach>
+						</th>
 						<th style="width: 25%;" class="fw-normal">가격</th>
-						<th style="width: 25%;" class="fw-normal">내용4</th>
-					</tr>
+						<th style="width: 25%;" class="fw-normal">
+						<c:forEach items="${vehicle }" var="info">
+						<fmt:formatNumber value="${info.price }" pattern="" />원		
+					    </c:forEach>
+					    </th>
+					    </tr>
 					<tr>
 						<td>주행거리</td>
-						<td>내용2</td>
-						<td>연식</td>
-						<td>내용4</td>
+						<td>
+						<c:forEach items="${vehicle }" var="info">
+						<fmt:formatNumber value="${info.mileage }" pattern="" />Km	
+					    </c:forEach>						
+						</td>
+						<td>년식</td>
+						<td>
+						<c:forEach items="${vehicle }" var="info">
+						${info.yearofmanufacture }년식	
+					    </c:forEach>
+						</td>
 					</tr>
 					<tr>
 						<td>차량번호</td>
-						<td>내용2</td>
+						<td>
+						<c:forEach items="${vehicle }" var="info">
+						${info.licensenumber }	
+					    </c:forEach>
+						</td>
 						<td>제조사</td>
-						<td>내용4</td>
+						<td>
+						<c:forEach items="${vehicle }" var="info">
+						${info.manufacturer }	
+					    </c:forEach>
+						</td>
 					</tr>
 					<tr>
 						<td>색상</td>
-						<td>내용2</td>
+						<td>
+						<c:forEach items="${vehicle }" var="info">
+						${info.color }	
+					    </c:forEach>
+						</td>
 						<td>배기량</td>
-						<td>내용4</td>
+						<td>
+						<c:forEach items="${vehicle }" var="info">
+						<fmt:formatNumber value="${info.displacement }" pattern="" />cc
+					    </c:forEach>
+						</td>
 					</tr>
 					<tr>
 						<td>국산/수입</td>
-						<td>내용2</td>
+						<td>
+						<c:forEach items="${vehicle }" var="info">
+						${info.domesticimport }
+					    </c:forEach>
+						</td>
 						<td>차종</td>
-						<td>내용4</td>
+						<td>
+						<c:forEach items="${vehicle }" var="info">
+						${info.vehicletype }
+					    </c:forEach>
+						</td>
 					</tr>
 					<tr>
 						<td>구동방식</td>
-						<td>내용2</td>
+						<td>
+						<c:forEach items="${vehicle }" var="info">
+						${info.wheeltype }
+					    </c:forEach>
+						</td>
 						<td>연료타입</td>
-						<td>내용4</td>
+						<td>
+						<c:forEach items="${vehicle }" var="info">
+						${info.fueltype }
+					    </c:forEach>						
+						</td>
 					</tr>
 					<tr>
 						<td>자동/수동</td>
-						<td>내용2</td>
+						<td>
+						<c:forEach items="${vehicle }" var="info">
+						${info.transmissiontype }
+					    </c:forEach>
+						</td>
 						<td>탑승인원</td>
-						<td>내용4</td>
+						<td>
+						<c:forEach items="${vehicle }" var="info">
+						${info.passengercapacity }명
+					    </c:forEach>
+						</td>
 					</tr>
 					
 				</tbody>
@@ -797,7 +878,13 @@
 			</thead>
 			<tbody>
 				<tr>
-					<td>스마트키</td>
+					<td>
+					<c:forEach items="${exterior}" var="test">
+                
+                    <td<c:if test="${test.sunroof == 1}"> style="font-weight:bold; color:black;"</c:if>>썬 루프</td>
+                    
+                    </c:forEach>
+					</td>
 					<td>크루즈 컨트롤</td>
 					<td>경사로 밀림방지</td>
 					<td>s</td>
