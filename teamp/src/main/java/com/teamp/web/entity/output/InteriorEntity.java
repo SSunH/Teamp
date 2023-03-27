@@ -64,6 +64,9 @@ public class InteriorEntity {
 	@Column(name= "high_pass_room_mirror")
 	private int highpassroommirror;
 	
+	@Column(name= "ecm_room_mirror")
+	private int ecmroommirror;
+	
 	@Column(name= "rear_seat_vents")
 	private int rearseatvents;
 

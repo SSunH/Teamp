@@ -854,39 +854,81 @@ color: #c0c0c0;
 							<c:forEach items="${interior}" var="option">
                             <td<c:if test="${option.leatherseats == 1}"> style="font-weight:bold; color:black;"</c:if>>가죽시트</td>
                             </c:forEach>
-							<td>전동시트(운전석)</td>
-							<td>전동시트(동승석)</td>
-							<td>열선시트(앞좌석)</td>
-							<td>열선시트(뒷좌석)</td>
+							<c:forEach items="${interior}" var="option">
+                            <td<c:if test="${option.powerseatdriver == 1}"> style="font-weight:bold; color:black;"</c:if>>전동시트(운전석)</td>
+                            </c:forEach>
+							<c:forEach items="${interior}" var="option">
+                            <td<c:if test="${option.powerseatpassenger == 1}"> style="font-weight:bold; color:black;"</c:if>>전동시트(동승석)</td>
+                            </c:forEach>
+							<c:forEach items="${interior}" var="option">
+                            <td<c:if test="${option.heatedseatfront == 1}"> style="font-weight:bold; color:black;"</c:if>>열선시트(앞좌석)</td>
+                            </c:forEach>
+							<c:forEach items="${interior}" var="option">
+                            <td<c:if test="${option.heatedseatrear == 1}"> style="font-weight:bold; color:black;"</c:if>>열선시트(뒷자석)</td>
+                            </c:forEach>
 						</tr>
 						<tr>
-						    <td>통풍시트</td>
-							<td>메모리시트</td>
-							<td>폴딩시트</td>
-							<td>마사지시트</td>
-							<td>워크인시트</td>
+						    <c:forEach items="${interior}" var="option">
+                            <td<c:if test="${option.ventilatedseats == 1}"> style="font-weight:bold; color:black;"</c:if>>통풍시트</td>
+                            </c:forEach>
+							<c:forEach items="${interior}" var="option">
+                            <td<c:if test="${option.memoryseats == 1}"> style="font-weight:bold; color:black;"</c:if>>메모리시트</td>
+                            </c:forEach>
+							<c:forEach items="${interior}" var="option">
+                            <td<c:if test="${option.foldingseats == 1}"> style="font-weight:bold; color:black;"</c:if>>폴딩시트</td>
+                            </c:forEach>
+							<c:forEach items="${interior}" var="option">
+                            <td<c:if test="${option.massageseats == 1}"> style="font-weight:bold; color:black;"</c:if>>마사지시트</td>
+                            </c:forEach>
+							<c:forEach items="${interior}" var="option">
+                            <td<c:if test="${option.walkinseat == 1}"> style="font-weight:bold; color:black;"</c:if>>워크인시트</td>
+                            </c:forEach>
 						</tr>
 						<tr>
-						    <td>요추받침</td>
-							<td>하이패스룸미러</td>
-							<td>ECM룸미러</td>
-							<td>뒷좌석에어벤트</td>
-							<td>패들쉬프트</td>
+						    <c:forEach items="${interior}" var="option">
+                            <td<c:if test="${option.lumbarsupport == 1}"> style="font-weight:bold; color:black;"</c:if>>요추받침</td>
+                            </c:forEach>
+							<c:forEach items="${interior}" var="option">
+                            <td<c:if test="${option.highpassroommirror == 1}"> style="font-weight:bold; color:black;"</c:if>>하이패스룸미러</td>
+                            </c:forEach>
+							<c:forEach items="${interior}" var="option">
+                            <td<c:if test="${option.ecmroommirror == 1}"> style="font-weight:bold; color:black;"</c:if>>ECM룸미러</td>
+                            </c:forEach>
+							<c:forEach items="${interior}" var="option">
+                            <td<c:if test="${option.rearseatvents == 1}"> style="font-weight:bold; color:black;"</c:if>>뒷자석에어벤트</td>
+                            </c:forEach>
+							<c:forEach items="${interior}" var="option">
+                            <td<c:if test="${option.paddleshift == 1}"> style="font-weight:bold; color:black;"</c:if>>패들쉬프트</td>
+                            </c:forEach>
 						</tr>
 						<tr>
-						    <td>전동햇빛가리개</td>
-							<td>엠비언트라이트</td>
+						    <c:forEach items="${interior}" var="option">
+                            <td<c:if test="${option.powersunshade == 1}"> style="font-weight:bold; color:black;"</c:if>>전동햇빛가리개</td>
+                            </c:forEach>
+							<c:forEach items="${interior}" var="option">
+                            <td<c:if test="${option.ambientlighting == 1}"> style="font-weight:bold; color:black;"</c:if>>엠비언트라이트</td>
+                            </c:forEach>
 							<td></td>
 							<td></td>
 							<td></td>
 						</tr>
 						<tr>
 							<td rowspan="4" style="width: 15%; border-right: 1px solid black; color: black; ">안전</td>
-							<td>커튼에어백</td>
-							<td>무릎에어백</td>
-							<td>승객감지에어백</td>
-							<td>브레이크잠김방지(ABS)</td>
-							<td>차체자세제어장치(ESC)</td>
+							<c:forEach items="${safety}" var="option">
+                            <td<c:if test="${option.curtainairbags == 1}"> style="font-weight:bold; color:black;"</c:if>>커튼에어백</td>
+                            </c:forEach>
+							<c:forEach items="${safety}" var="option">
+                            <td<c:if test="${option.kneeairbags == 1}"> style="font-weight:bold; color:black;"</c:if>>무릎에어백</td>
+                            </c:forEach>
+							<c:forEach items="${safety}" var="option">
+                            <td<c:if test="${option.passengerairbags == 1}"> style="font-weight:bold; color:black;"</c:if>>승객감지에어백</td>
+                            </c:forEach>
+							<c:forEach items="${safety}" var="option">
+                            <td<c:if test="${option.abs == 1}"> style="font-weight:bold; color:black;"</c:if>>브레이크잠김방지(ABS)</td>
+                            </c:forEach>
+							<c:forEach items="${safety}" var="option">
+                            <td<c:if test="${option.esc == 1}"> style="font-weight:bold; color:black;"</c:if>>차체자세제어장치(ESC)</td>
+                            </c:forEach>
 						</tr>
 						<tr>
 						    <td>후방센서</td>

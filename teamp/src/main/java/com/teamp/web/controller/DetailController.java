@@ -11,6 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.teamp.web.entity.output.ExteriorEntity;
 import com.teamp.web.entity.output.InteriorEntity;
 import com.teamp.web.entity.output.PhotoEntity;
+import com.teamp.web.entity.output.SafetyEntity;
 import com.teamp.web.entity.output.VehicleInformationEntity;
 import com.teamp.web.service.DetailService;
 
@@ -38,6 +39,9 @@ public class DetailController {
 		 
 		 List<InteriorEntity> listInterior = detailService.findInteriorByVehicleno(1);
 		 mv.addObject("interior", listInterior);
+		 
+		 List<SafetyEntity> listSafety = detailService.findSafetyByvehicleno(1);
+		 mv.addObject("safety", listSafety);
 		 return mv;
 		 }	
 	

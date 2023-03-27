@@ -8,10 +8,12 @@ import org.springframework.stereotype.Service;
 import com.teamp.web.entity.output.ExteriorEntity;
 import com.teamp.web.entity.output.InteriorEntity;
 import com.teamp.web.entity.output.PhotoEntity;
+import com.teamp.web.entity.output.SafetyEntity;
 import com.teamp.web.entity.output.VehicleInformationEntity;
 import com.teamp.web.repository.ExteriorRepository;
 import com.teamp.web.repository.InteriorRepository;
 import com.teamp.web.repository.PhotoRepository;
+import com.teamp.web.repository.SafetyRepository;
 import com.teamp.web.repository.VehicleInformationRepository;
 
 
@@ -30,6 +32,9 @@ public class DetailService {
 	
 	@Autowired
 	private InteriorRepository interiorRepository;
+	
+	@Autowired
+	private SafetyRepository safetyRepository;
 	
 
 
@@ -51,6 +56,11 @@ public class DetailService {
 	public List<InteriorEntity> findInteriorByVehicleno(int i) {
 		
 		return interiorRepository.findInteriorByVehicleno(1);
+	}
+
+	public List<SafetyEntity> findSafetyByvehicleno(int i) {
+		
+		return safetyRepository.findSafetyByVehicleno(1);
 	}
 
 
