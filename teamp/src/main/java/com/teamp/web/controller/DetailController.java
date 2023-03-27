@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.teamp.web.entity.output.ExteriorEntity;
+import com.teamp.web.entity.output.InteriorEntity;
 import com.teamp.web.entity.output.PhotoEntity;
 import com.teamp.web.entity.output.VehicleInformationEntity;
 import com.teamp.web.service.DetailService;
@@ -34,6 +35,9 @@ public class DetailController {
 		 
 		 List<ExteriorEntity> listExterior = detailService.findExteriorByVehicleno(1);
 		 mv.addObject("exterior", listExterior);
+		 
+		 List<InteriorEntity> listInterior = detailService.findInteriorByVehicleno(1);
+		 mv.addObject("interior", listInterior);
 		 return mv;
 		 }	
 	

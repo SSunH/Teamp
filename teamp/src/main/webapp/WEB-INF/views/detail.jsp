@@ -142,43 +142,6 @@
 	background-color: lightgray;
 }
 
-.option-table {
-	margin: 0 auto;
-	width: 1180px;
-	height: auto;
-	border: 1px solid black;
-	margin-bottom: 40px;
-	text-align: center;
-	margin-top: 50px;
-}
-
-.option-table th {
-	background-color: lightgray;
-	border: 1px solid black;
-	height: 40px;
-	color: #c0c0c0;
-	font-weight: 100;
-
-}
-
-.option-table td {
-	border: 1px solid black;
-	height: 40px;
-	width: calc(100%/ 15);
-	color: #c0c0c0;
-	font-weight: 100;
-
-}
-
-.option-table tbody {
-	height: auto;
-}
-
-.option-table tbody td {
-	height: 60px;
-
-}
-
 .content {
 	display: block;
 	margin: 0 auto;
@@ -221,7 +184,7 @@
 	height: 50px;
 	border: 1px solid lightgray;
 	border-radius: 10px;
-   	float: left;
+	float: left;
 	margin-right: 50px;
 	line-height: 50px;
 }
@@ -248,7 +211,7 @@
 	width: calc(100% * 1/ 3);
 	height: 30px;
 	/*    border: 1px solid black; */
-		/*    background-color: skyblue; */
+	/*    background-color: skyblue; */
 	float: left;
 	line-height: 30px;
 }
@@ -449,6 +412,12 @@
 	line-height: 55px;
 	background-color: red;
 }
+.container-option{
+margin-top: 50px;
+}
+.container-option td{
+color: #c0c0c0;
+}
 
 .submit {
 	margin: 0 auto;
@@ -478,6 +447,7 @@
 	float: left;
 	border-radius: 10px;
 }
+
 </style>
 <script>
 	function calculateInstallmentPrice(carPrice, downPayment, period,
@@ -627,37 +597,27 @@
 				<table class="vehicle-table">
 					<tr>
 						<td>모델명</td>
-						<td>
-						<c:forEach items="${vehicle }" var="info">
+						<td><c:forEach items="${vehicle }" var="info">
 						${info.modelname }	
-					</c:forEach>
-						
-						</td>
+					</c:forEach></td>
 					</tr>
 					<tr>
 						<td>가격</td>
-						<td>
-						<c:forEach items="${vehicle }" var="info">
-						<fmt:formatNumber value="${info.price }" pattern="" />원		
-					</c:forEach>
-						
-						</td>
+						<td><c:forEach items="${vehicle }" var="info">
+								<fmt:formatNumber value="${info.price }" pattern="" />원		
+					</c:forEach></td>
 					</tr>
 					<tr>
 						<td>주행거리</td>
-						<td>
-						<c:forEach items="${vehicle }" var="info">
-						<fmt:formatNumber value="${info.mileage }" pattern="" />Km	
-					</c:forEach>
-						</td>
+						<td><c:forEach items="${vehicle }" var="info">
+								<fmt:formatNumber value="${info.mileage }" pattern="" />Km	
+					</c:forEach></td>
 					</tr>
 					<tr>
 						<td>년식</td>
-						<td>
-						<c:forEach items="${vehicle }" var="info">
+						<td><c:forEach items="${vehicle }" var="info">
 						${info.yearofmanufacture }년식	
-					    </c:forEach>						
-						</td>
+					    </c:forEach></td>
 					</tr>
 				</table>
 				<table class="member-table">
@@ -676,11 +636,11 @@
 				</table>
 				<button class="favorites-btn">찜하기</button>
 			</div>
-			</div>
-		
+		</div>
+
 
 		<!-- 할부금 -->
-	
+
 		<div class="estimated">
 			<div class="price">
 				<div class="estimated_price1">차량가격</div>
@@ -699,294 +659,311 @@
 
 				</div>
 			</div>
-		
-		<div class="monthly1">할부가격</div>
-		<div class="monthly">
-			<button onclick="calculatePrice(12)">12개월</button>
-			<button onclick="calculatePrice(24)">24개월</button>
-			<button onclick="calculatePrice(36)">36개월</button>
-			<button onclick="calculatePrice(48)">48개월</button>
-			<button onclick="calculatePrice(60)">60개월</button>
-			<button onclick="calculatePrice(72)">72개월</button>
-		</div>
 
-		<div class="result_price">
-			<div class="rp_">
-				<div class="rp_left">
-					<ul>
-						<li class="rp_left1"><span class="rp_left1-1">총 할부 신청
-								금액</span> <span class="rp_left1-2"><span id="totalPayment"></span>원</span>
-						</li>
-						<li class="rp_left2"><span class="rp_left2-1">월 납부금</span> <span
-							class="rp_left2-2"><span id="monthlyPayment"></span>원</span></li>
-						<span class="rp_left2-3">(금리 7% 기준)</span>
-					</ul>
-				</div>
-				<div class="rp_right">
-					<div class="rp_right1">
-						<button onclick="resetCalculation()">다시계산</button>
-						<div class="rp_right1-2">한도 조회</div>
-					</div>
-					<div class="rp_right2">
+			<div class="monthly1">할부가격</div>
+			<div class="monthly">
+				<button onclick="calculatePrice(12)">12개월</button>
+				<button onclick="calculatePrice(24)">24개월</button>
+				<button onclick="calculatePrice(36)">36개월</button>
+				<button onclick="calculatePrice(48)">48개월</button>
+				<button onclick="calculatePrice(60)">60개월</button>
+				<button onclick="calculatePrice(72)">72개월</button>
+			</div>
+
+			<div class="result_price">
+				<div class="rp_">
+					<div class="rp_left">
 						<ul>
-							<li>개인신용평점 영향 없이, 24시간 한도 조회가 가능합니다.</li>
-							<li>실제 금리는 개인신용도에 따라 달라질 수 있습니다.</li>
+							<li class="rp_left1"><span class="rp_left1-1">총 할부 신청
+									금액</span> <span class="rp_left1-2"><span id="totalPayment"></span>원</span>
+							</li>
+							<li class="rp_left2"><span class="rp_left2-1">월 납부금</span> <span
+								class="rp_left2-2"><span id="monthlyPayment"></span>원</span></li>
+							<span class="rp_left2-3">(금리 7% 기준)</span>
 						</ul>
+					</div>
+					<div class="rp_right">
+						<div class="rp_right1">
+							<button onclick="resetCalculation()">다시계산</button>
+							<div class="rp_right1-2">한도 조회</div>
+						</div>
+						<div class="rp_right2">
+							<ul>
+								<li>개인신용평점 영향 없이, 24시간 한도 조회가 가능합니다.</li>
+								<li>실제 금리는 개인신용도에 따라 달라질 수 있습니다.</li>
+							</ul>
+						</div>
 					</div>
 				</div>
 			</div>
-		</div>
-		
-	
-		<!-- 기본정보 -->
 
-		<div class="container mt-5">
-			<table class="table">
-				<thead>
 
-					<tr>
-						<th><h4>기본정보</h4></th>
-				</thead>
-				<tbody>
-					<!-- 더미 데이터 출력 -->
-					<tr>
-						<th style="width: 25%;" class="fw-normal">모델명</th>
-						<th style="width: 25%;" class="fw-normal">
-						<c:forEach items="${vehicle }" var="info">
+			<!-- 기본정보 -->
+
+			<div class="container mt-5">
+				<table class="table">
+					<thead>
+
+						<tr>
+							<th><h4>기본정보</h4></th>
+					</thead>
+					<tbody>
+						<!-- 더미 데이터 출력 -->
+						<tr>
+							<th style="width: 25%;" class="fw-normal">모델명</th>
+							<th style="width: 25%;" class="fw-normal"><c:forEach
+									items="${vehicle }" var="info">
 						${info.modelname }	
-				     	</c:forEach>
-						</th>
-						<th style="width: 25%;" class="fw-normal">가격</th>
-						<th style="width: 25%;" class="fw-normal">
-						<c:forEach items="${vehicle }" var="info">
-						<fmt:formatNumber value="${info.price }" pattern="" />원		
-					    </c:forEach>
-					    </th>
-					    </tr>
-					<tr>
-						<td>주행거리</td>
-						<td>
-						<c:forEach items="${vehicle }" var="info">
-						<fmt:formatNumber value="${info.mileage }" pattern="" />Km	
-					    </c:forEach>						
-						</td>
-						<td>년식</td>
-						<td>
-						<c:forEach items="${vehicle }" var="info">
+				     	</c:forEach></th>
+							<th style="width: 25%;" class="fw-normal">가격</th>
+							<th style="width: 25%;" class="fw-normal"><c:forEach
+									items="${vehicle }" var="info">
+									<fmt:formatNumber value="${info.price }" pattern="" />원		
+					    </c:forEach></th>
+						</tr>
+						<tr>
+							<td>주행거리</td>
+							<td><c:forEach items="${vehicle }" var="info">
+									<fmt:formatNumber value="${info.mileage }" pattern="" />Km	
+					    </c:forEach></td>
+							<td>년식</td>
+							<td><c:forEach items="${vehicle }" var="info">
 						${info.yearofmanufacture }년식	
-					    </c:forEach>
-						</td>
-					</tr>
-					<tr>
-						<td>차량번호</td>
-						<td>
-						<c:forEach items="${vehicle }" var="info">
+					    </c:forEach></td>
+						</tr>
+						<tr>
+							<td>차량번호</td>
+							<td><c:forEach items="${vehicle }" var="info">
 						${info.licensenumber }	
-					    </c:forEach>
-						</td>
-						<td>제조사</td>
-						<td>
-						<c:forEach items="${vehicle }" var="info">
+					    </c:forEach></td>
+							<td>제조사</td>
+							<td><c:forEach items="${vehicle }" var="info">
 						${info.manufacturer }	
-					    </c:forEach>
-						</td>
-					</tr>
-					<tr>
-						<td>색상</td>
-						<td>
-						<c:forEach items="${vehicle }" var="info">
+					    </c:forEach></td>
+						</tr>
+						<tr>
+							<td>색상</td>
+							<td><c:forEach items="${vehicle }" var="info">
 						${info.color }	
-					    </c:forEach>
-						</td>
-						<td>배기량</td>
-						<td>
-						<c:forEach items="${vehicle }" var="info">
-						<fmt:formatNumber value="${info.displacement }" pattern="" />cc
-					    </c:forEach>
-						</td>
-					</tr>
-					<tr>
-						<td>국산/수입</td>
-						<td>
-						<c:forEach items="${vehicle }" var="info">
+					    </c:forEach></td>
+							<td>배기량</td>
+							<td><c:forEach items="${vehicle }" var="info">
+									<fmt:formatNumber value="${info.displacement }" pattern="" />cc
+					    </c:forEach></td>
+						</tr>
+						<tr>
+							<td>국산/수입</td>
+							<td><c:forEach items="${vehicle }" var="info">
 						${info.domesticimport }
-					    </c:forEach>
-						</td>
-						<td>차종</td>
-						<td>
-						<c:forEach items="${vehicle }" var="info">
+					    </c:forEach></td>
+							<td>차종</td>
+							<td><c:forEach items="${vehicle }" var="info">
 						${info.vehicletype }
-					    </c:forEach>
-						</td>
-					</tr>
-					<tr>
-						<td>구동방식</td>
-						<td>
-						<c:forEach items="${vehicle }" var="info">
+					    </c:forEach></td>
+						</tr>
+						<tr>
+							<td>구동방식</td>
+							<td><c:forEach items="${vehicle }" var="info">
 						${info.wheeltype }
-					    </c:forEach>
-						</td>
-						<td>연료타입</td>
-						<td>
-						<c:forEach items="${vehicle }" var="info">
+					    </c:forEach></td>
+							<td>연료타입</td>
+							<td><c:forEach items="${vehicle }" var="info">
 						${info.fueltype }
-					    </c:forEach>						
-						</td>
-					</tr>
-					<tr>
-						<td>자동/수동</td>
-						<td>
-						<c:forEach items="${vehicle }" var="info">
+					    </c:forEach></td>
+						</tr>
+						<tr>
+							<td>자동/수동</td>
+							<td><c:forEach items="${vehicle }" var="info">
 						${info.transmissiontype }
-					    </c:forEach>
-						</td>
-						<td>탑승인원</td>
-						<td>
-						<c:forEach items="${vehicle }" var="info">
+					    </c:forEach></td>
+							<td>탑승인원</td>
+							<td><c:forEach items="${vehicle }" var="info">
 						${info.passengercapacity }명
-					    </c:forEach>
-						</td>
-					</tr>
-					
-				</tbody>
-			</table>
+					    </c:forEach></td>
+						</tr>
+
+					</tbody>
+				</table>
 
 
 
-		</div>
+			</div>
 
-		<!-- 옵션 -->
-		<table class="option-table">
-			<thead>
-				<tr>
-					<th>편의</th>
-					<th>편의</th>
-					<th>편의</th>
-					<th>내부</th>
-					<th>내부</th>
-					<th>내부</th>
-					<th>안전</th>
-					<th>안전</th>
-					<th>안전</th>
-					<th>인테리어</th>
-					<th>인테리어</th>
-					<th>인테리어</th>
-					<th>미디어</th>
-					<th>미디어</th>
-					<th>미디어</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<td>
-					<c:forEach items="${exterior}" var="test">
-                
-                    <td<c:if test="${test.sunroof == 1}"> style="font-weight:bold; color:black;"</c:if>>썬 루프</td>
-                    
-                    </c:forEach>
-					</td>
-					<td>크루즈 컨트롤</td>
-					<td>경사로 밀림방지</td>
-					<td>s</td>
-					<td>s</td>
-					<td>s</td>
-					<td>s</td>
-					<td>s</td>
-					<td>s</td>
-					<td>s</td>
-					<td>s</td>
-					<td>s</td>
-					<td>s</td>
-					<td>s</td>
-					<td>s</td>
-				</tr>
-				<tr>
-					<td>열선 핸들</td>
-					<td>스마트 크루즈 컨트롤</td>
-					<td>헤드업 디스플레이(HUD)</td>
-					<td>s</td>
-					<td>s</td>
-					<td>s</td>
-					<td>s</td>
-					<td>s</td>
-					<td>s</td>
-					<td>s</td>
-					<td>s</td>
-					<td>s</td>
-					<td>s</td>
-					<td>s</td>
-					<td>s</td>
-				</tr>
-				<tr>
-					<td>리모컨 핸들</td>
-					<td>스탑앤고</td>
-					<td>무선충전</td>
-					<td>s</td>
-					<td>s</td>
-					<td>s</td>
-					<td>s</td>
-					<td>s</td>
-					<td>s</td>
-					<td>s</td>
-					<td>s</td>
-					<td>s</td>
-					<td>s</td>
-					<td>s</td>
-					<td>s</td>
-				</tr>
-				<tr>
-					<td>자동 에어컨</td>
-					<td>전동 트렁크</td>
-					<td>자동주차</td>
-					<td>s</td>
-					<td>s</td>
-					<td>s</td>
-					<td>s</td>
-					<td>s</td>
-					<td>s</td>
-					<td>s</td>
-					<td>s</td>
-					<td>s</td>
-					<td>s</td>
-					<td>s</td>
-					<td>s</td>
-				</tr>
-				<tr>
-					<td>좌우독립 에어컨</td>
-					<td>스마트 트렁크</td>
-					<td>냉장고</td>
-					<td>s</td>
-					<td>s</td>
-					<td>s</td>
-					<td>s</td>
-					<td>s</td>
-					<td>s</td>
-					<td>s</td>
-					<td>s</td>
-					<td>s</td>
-					<td>s</td>
-					<td>s</td>
-					<td>s</td>
-				</tr>
-				<tr>
-					<td>오토라이트</td>
-					<td>전자주차 브레이크(EPB)</td>
-					<td></td>
-					<td>s</td>
-					<td>s</td>
-					<td>s</td>
-					<td>s</td>
-					<td>s</td>
-					<td>s</td>
-					<td>s</td>
-					<td>s</td>
-					<td>s</td>
-					<td>s</td>
-					<td>s</td>
-					<td>s</td>
-				</tr>
-			</tbody>
-		</table>
+			<!-- 옵션 -->
+
+			<div class="container-option">
+				<table class="table">
+					<thead>
+						<tr>
+							<th><h4>옵션정보</h4></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td rowspan="3" style="width: 15%; border-right: 1px solid black; color: black;">외관</td>
+							<c:forEach items="${exterior}" var="option">
+                            <td<c:if test="${option.sunroof == 1}"> style="font-weight:bold; color:black;"</c:if>>선루프</td>
+                            </c:forEach>
+							<c:forEach items="${exterior}" var="option">
+                            <td<c:if test="${option.panoramicsunroof == 1}"> style="font-weight:bold; color:black;"</c:if>>파노라마선루프</td>
+                            </c:forEach>
+							<c:forEach items="${exterior}" var="option">
+                            <td<c:if test="${option.aluminumwheels == 1}"> style="font-weight:bold; color:black;"</c:if>>알루미늄휠</td>
+                            </c:forEach>
+							<c:forEach items="${exterior}" var="option">
+                            <td<c:if test="${option.powersidemirror == 1}"> style="font-weight:bold; color:black;"</c:if>>전동사이드미러</td>
+                            </c:forEach>
+							<c:forEach items="${exterior}" var="option">
+                            <td<c:if test="${option.hidlamps == 1}"> style="font-weight:bold; color:black;"</c:if>>HID램프</td>
+                            </c:forEach>
+						</tr>
+						<tr>
+						    <c:forEach items="${exterior}" var="option">
+                            <td<c:if test="${option.ledheadlamps == 1}"> style="font-weight:bold; color:black;"</c:if>>LED헤드램프</td>
+                            </c:forEach>
+							<c:forEach items="${exterior}" var="option">
+                            <td<c:if test="${option.adaptiveheadlamps == 1}"> style="font-weight:bold; color:black;"</c:if>>어댑티드헤드램프</td>
+                            </c:forEach>
+							<c:forEach items="${exterior}" var="option">
+                            <td<c:if test="${option.ledrearlamps == 1}"> style="font-weight:bold; color:black;"</c:if>>LED리어램프</td>
+                            </c:forEach>
+							<c:forEach items="${exterior}" var="option">
+                            <td<c:if test="${option.daytimelights == 1}"> style="font-weight:bold; color:black;"</c:if>>데이라이트</td>
+                            </c:forEach>
+							<c:forEach items="${exterior}" var="option">
+                            <td<c:if test="${option.highbeamassist == 1}"> style="font-weight:bold; color:black;"</c:if>>하이빔어시스트</td>
+                            </c:forEach>
+						</tr>
+						<tr>
+						    <c:forEach items="${exterior}" var="option">
+                            <td<c:if test="${option.compressiondoor == 1}"> style="font-weight:bold; color:black;"</c:if>>압축도어</td>
+                            </c:forEach>
+							<c:forEach items="${exterior}" var="option">
+                            <td<c:if test="${option.automaticslidingdoor == 1}"> style="font-weight:bold; color:black;"</c:if>>자동슬라이딩도어</td>
+                            </c:forEach>
+							<c:forEach items="${exterior}" var="option">
+                            <td<c:if test="${option.powersidestep == 1}"> style="font-weight:bold; color:black;"</c:if>>전동사이드스탭</td>
+                            </c:forEach>
+							<c:forEach items="${exterior}" var="option">
+                            <td<c:if test="${option.roofrack == 1}"> style="font-weight:bold; color:black;"</c:if>>루프랙</td>
+                            </c:forEach>
+							<td></td>
+						</tr>
+						<tr>
+							<td rowspan="4" style="width: 15%; border-right: 1px solid black; color: black; ">내장</td>
+							<c:forEach items="${interior}" var="option">
+                            <td<c:if test="${option.leatherseats == 1}"> style="font-weight:bold; color:black;"</c:if>>가죽시트</td>
+                            </c:forEach>
+							<td>전동시트(운전석)</td>
+							<td>전동시트(동승석)</td>
+							<td>열선시트(앞좌석)</td>
+							<td>열선시트(뒷좌석)</td>
+						</tr>
+						<tr>
+						    <td>통풍시트</td>
+							<td>메모리시트</td>
+							<td>폴딩시트</td>
+							<td>마사지시트</td>
+							<td>워크인시트</td>
+						</tr>
+						<tr>
+						    <td>요추받침</td>
+							<td>하이패스룸미러</td>
+							<td>ECM룸미러</td>
+							<td>뒷좌석에어벤트</td>
+							<td>패들쉬프트</td>
+						</tr>
+						<tr>
+						    <td>전동햇빛가리개</td>
+							<td>엠비언트라이트</td>
+							<td></td>
+							<td></td>
+							<td></td>
+						</tr>
+						<tr>
+							<td rowspan="4" style="width: 15%; border-right: 1px solid black; color: black; ">안전</td>
+							<td>커튼에어백</td>
+							<td>무릎에어백</td>
+							<td>승객감지에어백</td>
+							<td>브레이크잠김방지(ABS)</td>
+							<td>차체자세제어장치(ESC)</td>
+						</tr>
+						<tr>
+						    <td>후방센서</td>
+							<td>전방센서</td>
+							<td>후방카메라</td>
+							<td>전방카메라</td>
+							<td>어라운드뷰</td>
+						</tr>
+						<tr>
+						    <td>타이어공기압감지(TPMS)</td>
+							<td>차선이탈경보(LDWS)</td>
+							<td>자동긴급제동</td>
+							<td>전자제어서스펜션(ECS)</td>
+							<td>후측방경보</td>
+						</tr>
+						<tr>
+						    <td>미끄럼방지(TCS)</td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+						</tr>
+						<tr>
+							<td rowspan="4" style="width: 15%; border-right: 1px solid black; color: black; ">편의</td>
+							<td>스마트키</td>
+							<td>열선핸들</td>
+							<td>리모컨핸들</td>
+							<td>자동에어컨</td>
+							<td>좌우독립에어컨</td>
+						</tr>
+						<tr>
+						    <td>오토라이트</td>
+							<td>크루즈컨트롤</td>
+							<td>스마트크루즈컨트롤</td>
+							<td>스탑앤고</td>
+							<td>전동트렁크</td>
+						</tr>
+						<tr>
+						    <td>스마트트렁크</td>
+							<td>전자주차브레이크(EPB)</td>
+							<td>경사로밀림방지</td>
+							<td>헤드업디스플레이(HUD)</td>
+							<td>무선충전</td>
+						</tr>
+						<tr>
+						    <td>자동주차</td>
+							<td>냉장고</td>
+							<td></td>
+							<td></td>
+							<td></td>
+						</tr>
+						<tr>
+							<td rowspan="4" style="width: 15%; border-right: 1px solid black; color: black; ">멀티미디어</td>
+							<td>네비게이션(순정)</td>
+							<td>네비게이션(비순정)</td>
+							<td>USB</td>
+							<td>AUX</td>
+							<td>블루투스</td>
+						</tr>
+						<tr>
+						    <td>MP3</td>
+							<td>DMB</td>
+							<td>CD플레이어</td>
+							<td>AV시스템</td>
+							<td>뒷좌석TV</td>
+						</tr>
+						<tr>
+						    <td>텔레매틱스</td>
+							<td>스마트폰미러링(EPB)</td>
+							<td></td>
+							<td></td>
+							<td></td>
+						</tr>
+											
+						</tbody>
+						</table>
+						</div>
 
 		<!-- 본문내용 -->
 		<div class="content"></div>
@@ -997,90 +974,6 @@
 			<div class="favorites-btn1">찜하기</div>
 		</div>
 	</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	<!-- 		<form action="/regist" method="POST"> -->
-	<!-- 		<label for="vehicle_no">vehicle_no:</label> -->
-	<!-- 		<input type="text" id="vehicle_no" name="vehicle_no" value="1" required><br><br> -->
-
-	<!-- 		<label for="license_number">License Number:</label> -->
-	<!-- 		<input type="text" id="license_number" name="license_number" value="12가1212" required><br><br> -->
-
-	<!-- 		<label for="domestic_import">Domestic Import:</label> -->
-	<!-- 		<input type="text" id="domestic_import" name="domestic_import" value="국산" required><br><br> -->
-
-	<!-- 		<label for="manufacturer">Manufacturer:</label> -->
-	<!-- 		<input type="text" id="manufacturer" name="manufacturer" value="기아" required><br><br> -->
-
-	<!-- 		<label for="vehicle_type">Vehicle Type:</label> -->
-	<!-- 		<input type="text" id="vehicle_type" name="vehicle_type" value="대형" required><br><br> -->
-
-	<!-- 		<label for="model_name">Model Name:</label> -->
-	<!-- 		<input type="text" id="model_name" name="model_name" value="k9" required><br><br> -->
-
-	<!-- 		<label for="year_of_manufacture">Year of Manufacture:</label> -->
-	<!-- 		<input type="text" id="year_of_manufacture" name="year_of_manufacture" value="2022" required><br><br> -->
-
-	<!-- 		<label for="mileage">Mileage:</label> -->
-	<!-- 		<input type="number" id="mileage" name="mileage" value="1" required><br><br> -->
-
-	<!-- 		<label for="fuel_type">Fuel Type:</label> -->
-	<!-- 		<input type="text" id="fuel_type" name="fuel_type" value="디젤" required><br><br> -->
-
-	<!-- 		<label for="transmission_type">Transmission Type:</label> -->
-	<!-- 		<input type="text" id="transmission_type" name="transmission_type" value="오토" required><br><br> -->
-
-	<!-- 		<label for="displacement">Displacement:</label> -->
-	<!-- 		<input type="number" id="displacement" name="displacement" value="1" required><br><br> -->
-
-	<!-- 		<label for="passenger_capacity">Passenger Capacity:</label> -->
-	<!-- 		<input type="number" id="passenger_capacity" name="passenger_capacity" value="5" required><br><br> -->
-
-	<!-- 		<label for="wheel_type">Wheel Type:</label> -->
-	<!-- 		<input type="text" id="wheel_type" name="wheel_type" value="후륜" required><br><br> -->
-
-	<!-- 		<label for="color">Color:</label> -->
-	<!-- 		<input type="text" id="color" name="color" value="검정" required><br><br> -->
-
-	<!-- 		<label for="price">Price:</label> -->
-	<!-- 		<input type="number" id="price" name="price" value="29000000" required><br><br> -->
-
-	<!-- 		<label for="accident_status">Accident Status:</label> -->
-	<!-- 		<input type="text" id="accident_status" name="accident_status" value="무사고" required><br><br> -->
-
-	<!-- 		<label for="transaction_date">Transaction Date:</label> -->
-	<!-- 		<input type="text" id="transaction_date" name="transaction_date" value="2023-03-09" required><br><br> -->
-
-	<!-- 		<label for="transaction_location">Transaction Location:</label> -->
-	<!-- 		<input type="text" id="transaction_location" name="transaction_location" value="서울" required><br><br> -->
-
-	<!-- 		<button type="submit">regist</button> -->
-
-
-	<!-- 	</form> -->
 
 
 	<%@ include file="footer.jsp"%>
